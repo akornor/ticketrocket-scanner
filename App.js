@@ -63,24 +63,22 @@ export default class App extends React.Component {
   }
 
   _handleBarCodeRead = async ({ type, data }) => {
-    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    // console.log(data)
-    // try{
-    //   let response = await axios.get(`https://5982268b.ngrok.io/api/checkins/${data}/`);
-    //   console.log(response)
-    // }catch(error){
-    //   console.log(error)
-    // }
     if (this.state.scanned.includes(data)) {
       console.log("Already been scanned");
     } else {
       try {
+        let ticket = await localDB.get({
+          _id: data,
+        });
+        // should find a better way of updating document
         let response = await localDB.put({
           _id: data,
-          data: data
-        });
+          _rev: ticket._rev,
+          scanned: true,
+        })
+
       } catch (e) {
-        console.log("yes", e);
+        console.log(e);
       }
     }
     scanned = this.state.scanned.slice()

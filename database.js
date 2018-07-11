@@ -1,6 +1,6 @@
 import PouchDB from "pouchdb-react-native";
 
-const REMOTE_DB_URL = "http://b419c4ec.ngrok.io/tickets";
+const REMOTE_DB_URL = "http://localhost:5984/tickets";
 const localDB = new PouchDB("tickets");
 const remoteDB = new PouchDB(REMOTE_DB_URL);
 
