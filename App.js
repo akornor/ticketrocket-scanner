@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { BarCodeScanner, Permissions } from "expo";
 import Modal from "react-native-modal";
-import axios from "axios";
 import localDB from "./database";
 
 export default class App extends React.Component {
